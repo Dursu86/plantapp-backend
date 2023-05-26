@@ -47,12 +47,12 @@ describe('Given the plants mongo repo', () => {
     });
   });
   describe('When we use the delete method', () => {
-    test('If there is an error in the data base, it should throw an error', () => {
+    test('If there is an error in the data base, it should throw an error', async () => {
       (PlantModel.findByIdAndDelete as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(undefined),
       });
       const element = repo.deleteById('test id');
-      expect(element).rejects.toThrow();
+      await expect(element).rejects.toThrow();
     });
   });
   describe('When we use the findAll method', () => {
@@ -104,12 +104,12 @@ describe('Given the plants mongo repo', () => {
     });
   });
   describe('When we use the edit method', () => {
-    test('If there is an error in the data base, it should throw an error', () => {
+    test('If there is an error in the data base, it should throw an error', async () => {
       (PlantModel.findByIdAndUpdate as jest.Mock).mockReturnValue({
-        exec: jest.fn().mockResolvedValue(undefined),
+        exec: jest.fn().mockReturnValue(undefined),
       });
       const element = repo.edit(mockEditPlant);
-      expect(element).rejects.toThrow();
+      await expect(element).rejects.toThrow();
     });
     test('If there is a plant in the data base, it should return the plant updated', async () => {
       (PlantModel.findByIdAndUpdate as jest.Mock).mockReturnValue({
