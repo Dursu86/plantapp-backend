@@ -8,10 +8,9 @@ jest.mock('../config.js', () => ({
   },
 }));
 describe('Given the dbconnect function', () => {
-  dbConnect();
-
   describe('When called', () => {
-    test('Then it should call the mongoose.connect', () => {
+    test('Then it should call the mongoose.connect', async () => {
+      await dbConnect();
       expect(mongoose.connect).toHaveBeenCalled();
     });
   });

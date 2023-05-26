@@ -48,9 +48,9 @@ describe('Given the PlantsController', () => {
 describe('Given the add method', () => {
   describe('And any of the conditions are missing', () => {
     test('Then it should throw an error', () => {
-      mockPlants.forEach((plant) => {
+      mockPlants.forEach(async (plant) => {
         const req = { body: plant } as any;
-        plantsController.add(req, mockResp, mockNext);
+        await plantsController.add(req, mockResp, mockNext);
         expect(mockNext).toHaveBeenCalledWith(
           new HTTPError(400, 'Bad request', 'Incomplete information')
         );

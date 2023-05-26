@@ -31,21 +31,21 @@ describe('Given the user controller', () => {
 
   describe('When we call the login method', () => {
     test('If the request do not have email it should throw an error', async () => {
-      controller.login(mockReq1, mockResp, mockNext);
+      await controller.login(mockReq1, mockResp, mockNext);
 
       expect(mockNext).toHaveBeenCalledWith(
         new HTTPError(400, 'Bad request', 'Incomplete information')
       );
     });
     test('If the request do not have password it should throw an error', async () => {
-      controller.login(mockReq2, mockResp, mockNext);
+      await controller.login(mockReq2, mockResp, mockNext);
 
       expect(mockNext).toHaveBeenCalledWith(
         new HTTPError(400, 'Bad request', 'Incomplete information')
       );
     });
     test('If the request do not have name it should throw an error', async () => {
-      controller.login(mockReq3, mockResp, mockNext);
+      await controller.login(mockReq3, mockResp, mockNext);
 
       expect(mockNext).toHaveBeenCalledWith(
         new HTTPError(400, 'Bad request', 'Incomplete information')
@@ -59,7 +59,7 @@ describe('Given the user controller', () => {
       );
     });
     test('If the data was  correct it should call the search method', async () => {
-      controller.login(mockReq, mockResp, mockNext);
+      await controller.login(mockReq, mockResp, mockNext);
 
       expect(mockRepo.search).toHaveBeenCalled();
     });
